@@ -168,10 +168,10 @@ app.controller('blogCtrl', function ($scope, $http) {
         var strMaxRecords = "0";
         var strOrder = "desc";
         var strOrderBy = "created";
-        var strUserName = "xxx";
+        var strUserName = "VIITOR_Healthy";
         var strReferenceId = "0";
-        var strFromDate = "";
-        var strToDate = "";
+        var strFromDate = "2018-11-22";
+        var strToDate = "2018-11-30";
 
         $http(
             {
@@ -180,15 +180,15 @@ app.controller('blogCtrl', function ($scope, $http) {
                 method: "GET",
                 url: "http://viitortechnologies.com/eonservices/EcomServices/getBlogs",
                 params: {
-                    "index": strIndex, "orgName": strOrgName, "order": strOrder,
-                    "orderBy": strOrderBy, "userName": strUserName, "refId": strReferenceId,
-                    "fromDate": strFromDate, "toDate": strToDate, "maxRecords": strMaxRecords,
-                    "requestHeader": { "vendorID": "NA", "vendorType": "LMS", "loginId": "QATTest", "userName": "QAT Testing", "purpose": "Leads Data", "role": "GlobalAdmin", "ipAddress": "1.1.1.1.1" }
+                   
                 },
                 headers: {
                     "Content-Type": "application/json",
                     "cache-control": "no-cache",
-                    "Postman-Token": "76089fe3-6fc6-4711-9f7c-3fc-c4a2975cf"
+                    "Postman-Token": "76089fe3-6fc6-4711-9f7c-3fc-c4a2975cf",
+                    "index": strIndex, "orgName": strOrgName, "order": strOrder,
+                    "orderBy": strOrderBy, "userName": strUserName, "refId": strReferenceId,
+                    "fromDate": strFromDate, "toDate": strToDate, "maxRecords": strMaxRecords
                 },
                 processData: false
 
