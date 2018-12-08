@@ -1,6 +1,6 @@
 app.controller('loginCtrl', [
-    '$scope', '$http', '$rootScope', '$location', 'Session', 'SecurityService',
-    function ($scope, $http, $rootScope, $location, Session, SecurityService) {
+    '$scope', '$http', '$rootScope', '$location', 'Session', 'SecurityService','$localStorage',
+    function ($scope, $http, $rootScope, $location, Session, SecurityService, $localStorage) {
         $scope.pageClass = 'page-login';
 
         if (localStorage.getItem('session_token'))//Si existe sesion redirijimos al dashboard
@@ -30,6 +30,8 @@ app.controller('loginCtrl', [
 
         $scope.Login = function () {
 
+            angular.element(document.querySelector('#loader')).css('display', 'block');
+
             if ($scope.userForm.$valid) {
 
                 var strEmail = angular.element(document.querySelector('#txtLoginEmailId')).val();
@@ -51,18 +53,29 @@ app.controller('loginCtrl', [
                         processData: false
                     }).then(function successCallback(response) {
 
-                        if (response.status == 200 && response.statusText == "OK") {
+                        if (response.data.responseHeader.responseCode == 1 && response.data.responseHeader.responseMessage == "Valid Customer") {
 
-                            console.log(JSON.stringify(response));
+                            console.log(JSON.stringify(response.data));
+                            $localStorage.orgName = response.data.orgName;
+                            $localStorage.userName = response.data.userName;
                             alert("success");
-                            window.location.href = 'http://localhost:3010/AdminLTE//index.html';
+                            //window.location.href = 'http://localhost:3010/AdminLTE//index.html';
+                            window.location.href = 'http://'+document.location.host+'/AdminLTE//index.html';
                         }
-                        
+                        else {
+
+                            $localStorage.orgName = '';
+                            $localStorage.userName = '';
+                            alert("Invalid Customer");
+                        }
+
+                        angular.element(document.querySelector('#loader')).css('display', 'none');
 
                     }, function errorCallback(response) {
-
+                        $localStorage.orgName = '';
+                        $localStorage.userName = '';
                         alert("error");
-
+                        angular.element(document.querySelector('#loader')).css('display', 'none');
                     });
 
             }
@@ -70,7 +83,12 @@ app.controller('loginCtrl', [
             else {
 
                 alert("Please enter all required fields");
+                angular.element(document.querySelector('#loader')).css('display', 'none');
             }
+
+            //alert($localStorage.orgName);
+            //alert($localStorage.userName);
+
       }
 
 

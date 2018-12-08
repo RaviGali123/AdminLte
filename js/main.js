@@ -2,7 +2,8 @@
 var app = angular.module('MyAngularAppName', [
         'ngSanitize',
         'ui.router',
-        'ngAnimate'
+        'ngAnimate',
+        'ngStorage'
   ]);
 
 app.run([
