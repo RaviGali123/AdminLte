@@ -474,3 +474,64 @@ table.dataTable thead th, table.dataTable thead td {
     width: 13.5%;
     padding: 5px;
 }
+
+.table_data_heading {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #3c8dbc;
+    margin: 10px;
+}
+
+.table_data_column {
+    font-size: 16px;
+    font-weight: normal;
+    color: #333;
+    letter-spacing: 0px;
+    text-align: left;
+    margin: 10px;
+}
+
+.table_data_border {
+    border: 1px solid lightgray;
+    width: 97%;
+    margin-left: 20px;
+    margin-top: 0px;
+}
+
+.table_right_border {
+    border-right: 1px solid lightgray;
+}
+
+.data_table_textbox {
+    width: 99.5%;
+    height: 35px;
+    margin-left: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.blog_textbox {
+    width: 75%;
+}
+
+.blog_btn {
+    width: 20%;
+    margin-left: 0%;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid orange;
+    border-radius: 3px;
+}
+
+.dataTables_length {
+    margin-left: 10px !important;
+}
+
+.dataTables_info {
+    margin-left: 10px !important;
+}

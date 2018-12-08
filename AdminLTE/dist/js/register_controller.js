@@ -1,10 +1,12 @@
 //Added by Ravi
 
-var app = angular.module('registerApp', []);
+var app = angular.module('adminLte', []);
 
 app.controller('registerCtrl', function ($scope, $http) {
 
     $scope.SubmitRegister = function () {
+
+        angular.element(document.querySelector('#loader')).css('display', 'block');
 
         if ($scope.registerForm.$valid) {
 
@@ -44,17 +46,25 @@ app.controller('registerCtrl', function ($scope, $http) {
                     processData: false
                 }).then(function successCallback(response) {
 
-                    if (response.status == 200 && response.statusText == "OK") {
+                    angular.element(document.querySelector('#loader')).css('display', 'none');
 
-                        console.log(JSON.stringify(response));
+                    if (response.data.responseCode == 1) {
+
+                        console.log(JSON.stringify(response.data));
                         alert("You have sucessfully registred");
-                        window.location.href = 'http://localhost:3010/#/login';
+                        //window.location.href = 'http://localhost:3010/#/login';
 
+                        window.location.href = 'http://'+document.location.host+'/#/login';
+
+                    }
+                    else {
+                        alert("Error occurs while creating user");
                     }
 
                 }, function errorCallback(response) {
 
                     alert("error");
+                    angular.element(document.querySelector('#loader')).css('display', 'none');
 
                 });
 
@@ -63,6 +73,7 @@ app.controller('registerCtrl', function ($scope, $http) {
         else {
 
             alert("Please enter all required fields");
+            angular.element(document.querySelector('#loader')).css('display', 'none');
         }
 
     }
